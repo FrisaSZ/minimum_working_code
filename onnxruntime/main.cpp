@@ -8,7 +8,7 @@
 #include <vector>
 
 class OrtInfer {
- public:
+public:
   OrtInfer(const char *model_file) : session_(nullptr) {
     Ort::Env env(ORT_LOGGING_LEVEL_WARNING, "test");
     Ort::SessionOptions session_options;
@@ -18,14 +18,16 @@ class OrtInfer {
   }
   void RunInfer();
 
- private:
+private:
   Ort::Session session_;
 };
 
 void OrtInfer::RunInfer() {
   // std::vector<int64_t> input_dims = {1, 3, 32, 620};
+  // or
   Ort::Env env(ORT_LOGGING_LEVEL_WARNING, "test");
   std::vector<int64_t> input_dims = {1, 3, 32, 630};
+
   int64_t input_size = std::accumulate(input_dims.begin(), input_dims.end(), 1,
                                        std::multiplies<int64_t>());
   std::vector<float> input_data(input_size, 0);
