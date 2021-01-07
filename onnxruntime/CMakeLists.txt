@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.12.0)
+project(orttest VERSION 0.1.0)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_EXPORT_COMPILE_COMMANDS True)
+set(CMAKE_BUILD_TYPE Debug)
+add_executable(main main.cpp)
+set(ONNX_INC ${PROJECT_SOURCE_DIR}/onnxruntime-linux-x64-1.6.0/include/)
+set(ONNX_LIB ${PROJECT_SOURCE_DIR}/onnxruntime-linux-x64-1.6.0/lib/libonnxruntime.so)
+target_include_directories(main PUBLIC ${ONNX_INC})
+target_link_libraries(main ${ONNX_LIB})
